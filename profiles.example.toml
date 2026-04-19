@@ -1,0 +1,50 @@
+# Example profile registry. Copy to ~/.config/edge-cdp/profiles.toml on first
+# run. Replace <you> with your actual username for the platform you're on.
+# Each profile gets its own CDP debug port and its own user-data-dir;
+# profiles on different ports run in parallel without conflict.
+#
+# Browsers entries point at the executable for the platform you're running.
+# Uncomment / edit the section that matches your environment.
+
+# WSL (default): Windows-side Edge / Chrome reached via /mnt/c
+[browsers.edge]
+exe = "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+
+[browsers.chrome]
+exe = "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
+
+# Native Linux:
+# [browsers.edge]
+# exe = "/usr/bin/microsoft-edge"
+#
+# [browsers.chrome]
+# exe = "/usr/bin/google-chrome"
+
+# macOS:
+# [browsers.edge]
+# exe = "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
+#
+# [browsers.chrome]
+# exe = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+# Profiles. data_dir paths are platform-specific:
+#   WSL:    'C:\Users\<you>\edge-<name>'   (Windows-side path; Edge writes locally, not over the WSL bridge)
+#   Linux:  '/home/<you>/.config/edge-<name>'
+#   macOS:  '/Users/<you>/Library/Application Support/edge-<name>'
+#
+# bind_all defaults to false (CDP port bound to 127.0.0.1, only local processes
+# can connect). Set bind_all = true ONLY if you need other devices on your LAN
+# to reach the CDP port -- this exposes full browser control to anyone who can
+# reach the port.
+
+[profiles.work]
+port = 9225
+data_dir = 'C:\Users\<you>\edge-work'
+browser = "edge"
+purpose = "work browsing profile"
+
+[profiles.personal]
+port = 9226
+data_dir = 'C:\Users\<you>\edge-personal'
+browser = "edge"
+purpose = "personal browsing profile"
