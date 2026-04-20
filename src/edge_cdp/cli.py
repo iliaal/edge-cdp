@@ -112,6 +112,7 @@ def cmd_pdf(args: argparse.Namespace) -> int:
         wait_seconds=args.wait,
         media=args.media,
         tall=args.tall,
+        stamp=args.stamp,
     )
     size = Path(out).stat().st_size
     print(f"wrote {out} ({size:,} bytes)")
@@ -168,6 +169,15 @@ def build_parser() -> argparse.ArgumentParser:
     p_pdf.add_argument("--viewport", type=_parse_viewport, default=(1280, 900), help="WxH (default 1280x900)")
     p_pdf.add_argument("--wait", type=float, default=2.0, help="extra seconds to wait after load")
     p_pdf.add_argument("--media", choices=["screen", "print"], default="screen")
+    p_pdf.add_argument(
+        "--stamp",
+        nargs="?",
+        const="bottom",
+        choices=["top", "bottom"],
+        default=None,
+        help="add a stamp with URL, UTC retrieval timestamp, and page numbers "
+        "at the top or bottom of each page (default: bottom when flag is given alone)",
+    )
     p_pdf.set_defaults(func=cmd_pdf)
 
     return parser

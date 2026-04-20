@@ -33,7 +33,7 @@ edge-cdp shell <profile> -- CMD ARGS...      # run CMD with CDP_URL + EDGE_PROFI
 edge-cdp profile list
 edge-cdp profile add NAME [--port N] [--data-dir PATH] [--browser edge|chrome] [--purpose TEXT] [--bind-all]
 edge-cdp profile remove NAME
-edge-cdp pdf <profile> URL OUT [--tall] [--viewport WxH] [--wait SECS] [--media screen|print]
+edge-cdp pdf <profile> URL OUT [--tall] [--viewport WxH] [--wait SECS] [--media screen|print] [--stamp [top|bottom]]
 ```
 
 `profile add` auto-picks the next free CDP port starting at 9225 and defaults
@@ -61,6 +61,12 @@ capture_pdf(
 PDF defaults: `emulate_media("screen")`, `print_background=True`, A4, 10mm
 margins. Pass `tall=True` for a single-page render at `body.scrollHeight`
 (useful for archival captures where pagination breaks layouts).
+
+Pass `stamp="bottom"` or `stamp="top"` (CLI: `--stamp bottom` / `--stamp top`;
+bare `--stamp` defaults to bottom) to add a header or footer with the
+captured URL, UTC retrieval timestamp, and page numbers. The matching margin
+is bumped to 18mm to fit; in tall mode the height is padded so content
+doesn't clip.
 
 ## Multiple profiles in parallel
 
