@@ -31,7 +31,7 @@ edge-cdp profile list                                 # show configured profiles
 
 ## 🔗 Used by
 
-[compound-engineering-plugin](https://github.com/iliaal/compound-engineering-plugin)'s `scripts/post-thread.py` drives the X compose box over CDP using the `compound-engineering` profile on port 9225. Same shape works for any browser automation that needs a persistent, authenticated session without re-logging-in.
+[whetstone](https://github.com/iliaal/whetstone)'s `scripts/post-thread.py` drives the X compose box over CDP using the `compound-engineering` profile on port 9225. Same shape works for any browser automation that needs a persistent, authenticated session without re-logging-in.
 
 ## 🛠️ CLI
 
